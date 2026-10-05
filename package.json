@@ -1,0 +1,82 @@
+{
+  "name": "school-management-system",
+  "version": "1.0.0",
+  "private": true,
+  "main": "electron/main.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "prisma generate && next build",
+    "start": "next start",
+    "seed": "tsx prisma/seed.ts",
+    "db:seed": "tsx prisma/seed.ts",
+    "postinstall": "prisma generate",
+    "db:push": "prisma db push",
+    "setup": "prisma generate && prisma db push && npm run seed",
+    "electron:dev": "concurrently -k \"npm run dev\" \"wait-on http://localhost:3000 && electron .\"",
+    "electron:build": "npm run build && electron-builder",
+    "electron:build:mac": "npm run build && electron-builder --mac",
+    "electron:build:win": "npm run build && electron-builder --win",
+    "electron:build:linux": "npm run build && electron-builder --linux"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.20.0",
+    "bcryptjs": "^2.4.3",
+    "jose": "^5.9.6",
+    "next": "^14.2.35",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/node": "^20.14.0",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "autoprefixer": "^10.4.19",
+    "concurrently": "^8.2.2",
+    "electron": "^31.3.0",
+    "electron-builder": "^24.13.3",
+    "postcss": "^8.4.38",
+    "prisma": "^5.20.0",
+    "tailwindcss": "^3.4.4",
+    "tsx": "^4.16.2",
+    "typescript": "^5.5.3",
+    "wait-on": "^7.2.0"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  },
+  "build": {
+    "appId": "com.greenfield.sms",
+    "productName": "Greenfield SMS",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "electron/**/*"
+    ],
+    "extraResources": [
+      { "from": ".next", "to": "app/.next" },
+      { "from": "node_modules", "to": "app/node_modules" },
+      { "from": "public", "to": "app/public" },
+      { "from": "prisma/schema.prisma", "to": "app/prisma/schema.prisma" },
+      { "from": "next.config.js", "to": "app/next.config.js" },
+      { "from": "package.json", "to": "app/package.json" },
+      { "from": "prisma/dev.db", "to": "template.db" }
+    ],
+    "mac": {
+      "target": "dmg",
+      "category": "public.app-category.education"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "linux": {
+      "target": "AppImage",
+      "category": "Education"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  }
+}
