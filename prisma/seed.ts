@@ -30,66 +30,66 @@ async function main() {
   // Users for every role (demo credentials)
   const superAdmin = await prisma.user.upsert({
     where: { email: "superadmin@school.com" },
-    update: {},
+    update: { password, role: "SUPER_ADMIN", status: "ACTIVE" },
     create: { name: "Alex Muwanga", email: "superadmin@school.com", password, role: "SUPER_ADMIN" },
   });
 
   const admin = await prisma.user.upsert({
     where: { email: "admin@school.com" },
-    update: {},
+    update: { password, role: "ADMIN", status: "ACTIVE" },
     create: { name: "Grace Nakato", email: "admin@school.com", password, role: "ADMIN" },
   });
 
   const accountant = await prisma.user.upsert({
     where: { email: "accountant@school.com" },
-    update: {},
+    update: { password, role: "ACCOUNTANT", status: "ACTIVE" },
     create: { name: "Peter Okello", email: "accountant@school.com", password, role: "ACCOUNTANT" },
   });
 
   const librarian = await prisma.user.upsert({
     where: { email: "librarian@school.com" },
-    update: {},
+    update: { password, role: "LIBRARIAN", status: "ACTIVE" },
     create: { name: "Sarah Achieng", email: "librarian@school.com", password, role: "LIBRARIAN" },
   });
 
   const warden = await prisma.user.upsert({
     where: { email: "warden@school.com" },
-    update: {},
+    update: { password, role: "HOSTEL_WARDEN", status: "ACTIVE" },
     create: { name: "James Okwir", email: "warden@school.com", password, role: "HOSTEL_WARDEN" },
   });
 
   const nurse = await prisma.user.upsert({
     where: { email: "nurse@school.com" },
-    update: {},
+    update: { password, role: "NURSE", status: "ACTIVE" },
     create: { name: "Nurse Betty", email: "nurse@school.com", password, role: "NURSE" },
   });
 
   const security = await prisma.user.upsert({
     where: { email: "security@school.com" },
-    update: {},
+    update: { password, role: "SECURITY", status: "ACTIVE" },
     create: { name: "Guard Tom", email: "security@school.com", password, role: "SECURITY" },
   });
 
   const teacherUser1 = await prisma.user.upsert({
     where: { email: "teacher@school.com" },
-    update: {},
+    update: { password, role: "TEACHER", status: "ACTIVE" },
     create: { name: "Moses Kato", email: "teacher@school.com", password, role: "TEACHER" },
   });
   const teacherUser2 = await prisma.user.upsert({
     where: { email: "teacher2@school.com" },
-    update: {},
+    update: { password, role: "TEACHER", status: "ACTIVE" },
     create: { name: "Esther Namuli", email: "teacher2@school.com", password, role: "TEACHER" },
   });
 
   const parentUser = await prisma.user.upsert({
     where: { email: "parent@school.com" },
-    update: {},
+    update: { password, role: "PARENT", status: "ACTIVE" },
     create: { name: "Robert Ssemwogerere", email: "parent@school.com", password, role: "PARENT" },
   });
 
   const studentUser = await prisma.user.upsert({
     where: { email: "student@school.com" },
-    update: {},
+    update: { password, role: "STUDENT", status: "ACTIVE" },
     create: { name: "Daniel Ssemwogerere", email: "student@school.com", password, role: "STUDENT" },
   });
 
